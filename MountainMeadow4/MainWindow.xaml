@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MountainMeadow4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowState="Maximized"
+        Title="MainWindow">
     <Grid Background="#FFA5FFAE" ShowGridLines="True">
-        <TextBlock x:Name="welcome" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="36" FontWeight="Bold" Foreground="#FF0051D4"><Run Text="Welcome to Mountain Meadow "/><LineBreak/><Run Text="Medical Records"/></TextBlock>
+        <TextBlock x:Name="welcome" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" VerticalAlignment="Center" 
+                   TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="36" FontWeight="Bold" Foreground="#FF0051D4"><Run 
+                       Text="Welcome to Mountain Meadow "/><LineBreak/><Run Text="Medical Records"/></TextBlock>
 
     </Grid>
 </Window>
