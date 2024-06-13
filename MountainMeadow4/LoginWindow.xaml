@@ -1,4 +1,4 @@
-﻿<Window x:Class="MountainMeadow4.MainWindow"
+﻿<Window x:Class="MountainMeadow4.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MountainMeadow4"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="MainWindow">
+        Title="LoginWindow">
     <Grid Background="#FFA5FFAE" ShowGridLines="True">
         <TextBlock x:Name="welcome" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" VerticalAlignment="Center" 
                    TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="36" FontWeight="Bold" Foreground="#FF0051D4"><Run 
