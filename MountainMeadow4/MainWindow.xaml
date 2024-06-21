@@ -12,7 +12,7 @@
         <StackPanel Name="pnlTabs" DockPanel.Dock="Right" Width="100" Background="Aqua"></StackPanel>
         <Menu Name="mnuTop" DockPanel.Dock="Top" Height="25" Background="AliceBlue"></Menu>
         <Label Name="lblPtInfo" DockPanel.Dock="Top" Height="25" Background="AntiqueWhite" ></Label>
-        <StatusBar Name="statBar" DockPanel.Dock="Bottom" Height="20" Background="Aquamarine"></StatusBar>
-        <UserControl Name="ucDisplay" Background="Azure">display area</UserControl>
+        <!--<StatusBar Name="statBar" DockPanel.Dock="Bottom" Height="20" Background="Aquamarine"></StatusBar> -->
+        <Grid Name="gridDisplay" Background="Azure"></Grid>
     </DockPanel>
 </Window>
