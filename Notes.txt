@@ -1,0 +1,9 @@
+5/13/24 reading up on wpf layout, sizing, etc.  Don't seem to find an easy way to change the font on the main window title bar, though it is supposedly possible per https://www.actiprosoftware.com/community/thread/21421/change-the-font-in-the-window-title-bar
+6/13/24 decided on starting size for main window, see TestingM4 for discussion
+Height="922" Width="1548"
+Renamed MainWindow to LoginWindow, to allow main program window to be called MainWindow.  
+Looking into ways to include my semaphore trick by Francesco Balena in startup.  I'm wary
+of creating a separate static Main() entry point; probably will have to put it in LoginWindow.xaml.cs
+(unless I can think of a way to put it inApp.xaml.cs) and just close the window if user directs to.
+7/2/24 looking at best object to reference for program piece display- settled on Panel.  It can be assigned to a grid, for example, and if necessary the grid can host a winforms System.Windows.Forms.Control (which we used in MM3) as a child using System.Windows.Forms.Integration.WindowsFormsHost host
+Notice what is called .Net 8-Windows is .Net Core and the currently preferred framework.  .NetFramework v4.8 still works but is not being further developed going forward.  We'll use .Net 8.

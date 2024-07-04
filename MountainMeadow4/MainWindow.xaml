@@ -1,18 +1,21 @@
 ﻿<Window x:Class="MountainMeadow4.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MountainMeadow4"
         mc:Ignorable="d"
-        Title="Mountain Meadow" 
+        WindowState="Maximized"
         Height="922" Width="1548"
+        Title="LoginWindow"
         FontSize="14">
-    <DockPanel LastChildFill="True">
-        <StackPanel Name="pnlTabs" DockPanel.Dock="Right" Width="100" Background="Aqua"></StackPanel>
-        <Menu Name="mnuTop" DockPanel.Dock="Top" Height="25" Background="AliceBlue"></Menu>
-        <Label Name="lblPtInfo" DockPanel.Dock="Top" Height="25" Background="AntiqueWhite" ></Label>
-        <!--<StatusBar Name="statBar" DockPanel.Dock="Bottom" Height="20" Background="Aquamarine"></StatusBar> -->
-        <Grid Name="gridDisplay" Background="Azure"></Grid>
-    </DockPanel>
+    <Grid Background="#FFA5FFAE" ShowGridLines="True">
+        <TextBlock x:Name="welcome" HorizontalAlignment="Center" Margin="0,108,0,0" TextWrapping="Wrap" VerticalAlignment="Center" 
+                   TextAlignment="Center" FontFamily="Comic Sans MS" FontSize="36" FontWeight="Bold" Foreground="#FF0051D4"><Run 
+                       Text="Welcome to Mountain Meadow "/><LineBreak/><Run Text="Medical Records"/></TextBlock>
+        <Button Name="btnLogin" Content="Login" 
+                HorizontalAlignment="Right" Margin="100,100,100,100" VerticalAlignment="Bottom"
+                Click="BtnLogin_Click"/>
+
+    </Grid>
 </Window>
