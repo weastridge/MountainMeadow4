@@ -10,7 +10,14 @@
         FontSize="14">
     <DockPanel LastChildFill="True">
         <StackPanel Name="pnlTabs" DockPanel.Dock="Right" Width="100" Background="Aqua"></StackPanel>
-        <Menu Name="mnuTop" DockPanel.Dock="Top" Height="25" Background="AliceBlue"></Menu>
+        <Menu Name="mnuTop" DockPanel.Dock="Top" Height="25" Background="AliceBlue">
+            <MenuItem Header="_File" >
+                <MenuItem Name="mnuExit" Header="E_xit" Click="mnuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Name="MnuAbout" Click="MnuAbout_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
         <Label Name="lblPtInfo" DockPanel.Dock="Top" Height="25" Background="AntiqueWhite" ></Label>
         <!--<StatusBar Name="statBar" DockPanel.Dock="Bottom" Height="20" Background="Aquamarine"></StatusBar> -->
         <Grid Name="gridDisplay" Background="Azure">

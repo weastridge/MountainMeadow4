@@ -19,9 +19,46 @@ namespace MountainMeadow4
     /// </summary>
     public partial class ProgramWindow : Window
     {
+        /// <summary>
+        /// the main program window
+        /// </summary>
         public ProgramWindow()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// close whole program
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MnuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Primary Display area is ");
+            sb.Append(System.Windows.SystemParameters.PrimaryScreenWidth);
+            sb.Append(" x ");
+            sb.Append(System.Windows.SystemParameters.PrimaryScreenHeight);
+            sb.Append("\r\nwork area size is ");
+            sb.Append(System.Windows.SystemParameters.WorkArea.Size.ToString());
+            sb.Append("\r\n task bar ht is ");
+            sb.Append((System.Windows.SystemParameters.PrimaryScreenHeight - System.Windows.SystemParameters.WorkArea.Height).ToString());
+            sb.Append("\r\nMain window size is ");
+            sb.Append(this.ActualWidth.ToString());
+            sb.Append(", ");
+            sb.Append(this.ActualHeight.ToString());
+            sb.Append("\r\n");
+            sb.Append("BaseDisplay size is ");
+            sb.Append(gridDisplay.ActualWidth.ToString());
+            sb.Append(", ");
+            sb.Append(gridDisplay.ActualHeight.ToString());
+            sb.Append("\r\n");
+            System.Windows.MessageBox.Show(sb.ToString());
         }
     }
 }
