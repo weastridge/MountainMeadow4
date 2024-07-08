@@ -5,12 +5,14 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4Common", "MM4Common\MM4Common.csproj", "{B965BDEC-504D-479F-A181-8689DAA13649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainMeadow4", "MountainMeadow4\MountainMeadow4.csproj", "{117FB80F-9609-450D-87D3-0981B9F2B010}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MountainMeadow4", "MountainMeadow4\MountainMeadow4.csproj", "{117FB80F-9609-450D-87D3-0981B9F2B010}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{21B7773C-7DC9-476B-9712-A45E2465350C}"
 	ProjectSection(SolutionItems) = preProject
 		Notes.txt = Notes.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCBase", "PCBase\PCBase.csproj", "{33CF8A3D-DC3D-4852-9919-A3C2D42106ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +28,16 @@ Global
 		{117FB80F-9609-450D-87D3-0981B9F2B010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{117FB80F-9609-450D-87D3-0981B9F2B010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{117FB80F-9609-450D-87D3-0981B9F2B010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CF8A3D-DC3D-4852-9919-A3C2D42106ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CF8A3D-DC3D-4852-9919-A3C2D42106ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CF8A3D-DC3D-4852-9919-A3C2D42106ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CF8A3D-DC3D-4852-9919-A3C2D42106ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33CF8A3D-DC3D-4852-9919-A3C2D42106ED} = {21B7773C-7DC9-476B-9712-A45E2465350C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B2CC00E-1F31-4D73-A4DF-00CDECBE09CD}
