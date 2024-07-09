@@ -7,4 +7,5 @@ of creating a separate static Main() entry point; probably will have to put it i
 (unless I can think of a way to put it inApp.xaml.cs) and just close the window if user directs to.
 7/2/24 looking at best object to reference for program piece display- settled on UserControl, which hosts any sort of panel.  It can be assigned to a grid, for example, and if necessary the grid can host a winforms System.Windows.Forms.Control (which we used in MM3) as a child using System.Windows.Forms.Integration.WindowsFormsHost host
 Notice what is called .Net 8-Windows is .Net Core and the currently preferred framework.  .NetFramework v4.8 still works but is not being further developed going forward.  We'll use .Net 8.
-7/4/24 did that.  Next to make a Program Component Display (PP is now PC)
+7/4/24 did that.  Next to make a Program Component Display (PP is now PC).  It will be hosted by a ContentControl in ProgramWindow.
+7/9/24 did that.  Now to connect to database.

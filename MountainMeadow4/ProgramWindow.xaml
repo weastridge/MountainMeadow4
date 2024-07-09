@@ -9,7 +9,9 @@
         Height="922" Width="1548"
         FontSize="14">
     <DockPanel LastChildFill="True">
-        <StackPanel Name="pnlTabs" DockPanel.Dock="Right" Width="100" Background="Aqua"></StackPanel>
+        <StackPanel Name="pnlTabs" DockPanel.Dock="Right" Width="100" Background="Aqua">
+            <Button Name="ButtonFirst" Content="First" Click="ButtonFirst_Click" />
+        </StackPanel>
         <Menu Name="mnuTop" DockPanel.Dock="Top" Height="25" Background="AliceBlue">
             <MenuItem Header="_File" >
                 <MenuItem Name="mnuExit" Header="E_xit" Click="mnuExit_Click"/>
@@ -20,8 +22,6 @@
         </Menu>
         <Label Name="lblPtInfo" DockPanel.Dock="Top" Height="25" Background="AntiqueWhite" ></Label>
         <!--<StatusBar Name="statBar" DockPanel.Dock="Bottom" Height="20" Background="Aquamarine"></StatusBar> -->
-        <Grid Name="gridDisplay" Background="Azure">
-            <Button Name ="btnTmp" Content="Button" HorizontalAlignment="Left" Margin="305,267,0,0" VerticalAlignment="Top"/>
-        </Grid>
+        <ContentControl Name="ContentDisplay" />
     </DockPanel>
 </Window>

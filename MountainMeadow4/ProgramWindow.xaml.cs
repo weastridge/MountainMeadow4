@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MM4Common;
+using PCBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,12 +55,22 @@ namespace MountainMeadow4
             sb.Append(", ");
             sb.Append(this.ActualHeight.ToString());
             sb.Append("\r\n");
-            sb.Append("BaseDisplay size is ");
-            sb.Append(gridDisplay.ActualWidth.ToString());
+            sb.Append("ContentDisplay size is ");
+            sb.Append(ContentDisplay.ActualWidth.ToString());
             sb.Append(", ");
-            sb.Append(gridDisplay.ActualHeight.ToString());
+            sb.Append(ContentDisplay.ActualHeight.ToString());
             sb.Append("\r\n");
             System.Windows.MessageBox.Show(sb.ToString());
+        }
+
+        private void ButtonFirst_Click(object sender, RoutedEventArgs e)
+        {
+            IProgramComponent pc = new PCBase.BaseProgramComponent();
+            UserControl? uc = pc.Display;
+            if (uc != null)
+            {
+                ContentDisplay.Content = uc;
+            }
         }
     }
 }

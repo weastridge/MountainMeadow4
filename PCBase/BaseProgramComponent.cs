@@ -26,6 +26,11 @@ namespace PCBase
         /// the display which hosts a panel, (nullable)
         /// </summary>
         public UserControl? Display { get; set; }
+
+        public BaseProgramComponent() 
+        {
+            Display = new BasePCDisplay();
+        }
     }
 
 }

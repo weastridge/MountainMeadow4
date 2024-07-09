@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MM4Common\MM4Common.csproj" />
+    <ProjectReference Include="..\PCBase\PCBase.csproj" />
   </ItemGroup>
 
 </Project>
