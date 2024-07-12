@@ -1,0 +1,2 @@
+[] Build a secure component to hold password and secret keys, i.e. MM4License
+[] Require a database server certificate for live data usage

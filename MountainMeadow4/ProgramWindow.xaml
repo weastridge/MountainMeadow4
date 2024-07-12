@@ -14,7 +14,7 @@
         </StackPanel>
         <Menu Name="mnuTop" DockPanel.Dock="Top" Height="25" Background="AliceBlue">
             <MenuItem Header="_File" >
-                <MenuItem Name="mnuExit" Header="E_xit" Click="mnuExit_Click"/>
+                <MenuItem Name="mnuExit" Header="E_xit" Click="MnuExit_Click"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About" Name="MnuAbout" Click="MnuAbout_Click"></MenuItem>

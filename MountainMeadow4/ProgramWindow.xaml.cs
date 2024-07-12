@@ -34,14 +34,14 @@ namespace MountainMeadow4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mnuExit_Click(object sender, RoutedEventArgs e)
+        private void MnuExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         private void MnuAbout_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("Primary Display area is ");
             sb.Append(System.Windows.SystemParameters.PrimaryScreenWidth);
             sb.Append(" x ");
@@ -49,16 +49,16 @@ namespace MountainMeadow4
             sb.Append("\r\nwork area size is ");
             sb.Append(System.Windows.SystemParameters.WorkArea.Size.ToString());
             sb.Append("\r\n task bar ht is ");
-            sb.Append((System.Windows.SystemParameters.PrimaryScreenHeight - System.Windows.SystemParameters.WorkArea.Height).ToString());
+            sb.Append(System.Windows.SystemParameters.PrimaryScreenHeight - System.Windows.SystemParameters.WorkArea.Height);
             sb.Append("\r\nMain window size is ");
-            sb.Append(this.ActualWidth.ToString());
+            sb.Append(ActualWidth);
             sb.Append(", ");
-            sb.Append(this.ActualHeight.ToString());
+            sb.Append(ActualHeight);
             sb.Append("\r\n");
             sb.Append("ContentDisplay size is ");
-            sb.Append(ContentDisplay.ActualWidth.ToString());
+            sb.Append(ContentDisplay.ActualWidth);
             sb.Append(", ");
-            sb.Append(ContentDisplay.ActualHeight.ToString());
+            sb.Append(ContentDisplay.ActualHeight);
             sb.Append("\r\n");
             System.Windows.MessageBox.Show(sb.ToString());
         }

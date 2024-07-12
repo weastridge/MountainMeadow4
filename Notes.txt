@@ -9,3 +9,7 @@ of creating a separate static Main() entry point; probably will have to put it i
 Notice what is called .Net 8-Windows is .Net Core and the currently preferred framework.  .NetFramework v4.8 still works but is not being further developed going forward.  We'll use .Net 8.
 7/4/24 did that.  Next to make a Program Component Display (PP is now PC).  It will be hosted by a ContentControl in ProgramWindow.
 7/9/24 did that.  Now to connect to database.
+Trying to connect to download users, but that means defining people, which need codified gender identities, which was accessed in database..  Will decide whether to hard code that.
+7/10/2024  Just importing some of the mm3common stuff to MM4Common;  after 3 hours, I still have 90 warnings, 279 messages, and haven't even started IMM4Data yet.  Mostly involve the new handling of nulls by C# that requires declaring if null is allowed.
+7/11/24 2 hrs on MM4Types.cs;  down to 61 messages.
+7/12/24 got the warnings and messages fixed in MM4Types, but there are more in CommHelpers, including the complaint that static members shouldn't be visible (public).  I may need to move those into a separate project called HL7 or something so they will be internal.
