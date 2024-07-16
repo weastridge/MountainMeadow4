@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+
+using MM4Common;
 using System.Text;
-using System.Threading.Tasks;
-//using static MM4Common.MM4Types;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MM4Common
 {
@@ -83,64 +81,56 @@ namespace MM4Common
     /// <summary>
     /// useful for CCDA Codified Equivalents CE 
     /// </summary>
+    /// <remarks>
+    /// create entity with values
+    /// </remarks>
+    /// <param name="code"></param>
+    /// <param name="codeSystem"></param>
+    /// <param name="codeSystemName"></param>
+    /// <param name="displayName"></param>
+    /// <param name="nullFlavor"></param>
+    /// <param name="comments"></param>
     [Serializable]
 
-    public class CodifiedEntity
+    public class CodifiedEntity(string? code,
+        string? codeSystem,
+        string? codeSystemName,
+        string? displayName,
+        string? nullFlavor,
+        string? comments)
     {
         /// <summary>
         /// the code for this concept
         /// </summary>
-        public string? Code;
+        public string? Code = code;
         /// <summary>
         /// the identifier for the code system code is from
         /// </summary>
-        public string CodeSystem;
+        public string? CodeSystem = codeSystem;
         /// <summary>
         /// the human readable name of the code system code is from
         /// </summary>
-        public string CodeSystemName;
+        public string? CodeSystemName = codeSystemName;
         /// <summary>
         /// human readable name of the concept
         /// </summary>
-        public string DisplayName;
+        public string? DisplayName = displayName;
         /// <summary>
         /// the flavor of null, required if Code is null
         /// </summary>
-        public string? NullFlavor;
+        public string? NullFlavor = nullFlavor;
         /// <summary>
         /// optional comments
         /// </summary>
-        public string? Comments;
-        /// <summary>
-        /// create entity with values
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="codeSystem"></param>
-        /// <param name="codeSystemName"></param>
-        /// <param name="displayName"></param>
-        /// <param name="nullFlavor"></param>
-        /// <param name="comments"></param>
-        public CodifiedEntity(string? code,
-            string codeSystem,
-            string codeSystemName,
-            string displayName,
-            string? nullFlavor,
-            string? comments)
-        {
-            Code = code;
-            CodeSystem = codeSystem;
-            CodeSystemName = codeSystemName;
-            DisplayName = displayName;
-            NullFlavor = nullFlavor;
-            Comments = comments;
-        }
+        public string? Comments = comments;
+
         /// <summary>
         /// shows display name
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return DisplayName;
+            return DisplayName ?? "undefined DisplayName";
         }
     }
     /// <summary>
@@ -153,7 +143,7 @@ namespace MM4Common
         /// <summary>
         /// all smoking status selections
         /// </summary>
-        public static CodifiedEntity[] All = new CodifiedEntity[8];
+        public static readonly CodifiedEntity[] All = new CodifiedEntity[8];
         /// <summary>
         /// static constructor
         /// </summary>
@@ -225,27 +215,18 @@ namespace MM4Common
         public static CodifiedEntity FromSmokingStatusCat(
             PatientProperties.SmokingStatusCat cat)
         {
-            switch (cat)
+            return cat switch
             {
-                case PatientProperties.SmokingStatusCat.Unspecified:
-                    return All[0];
-                case PatientProperties.SmokingStatusCat.SmokesDaily:
-                    return All[1];
-                case PatientProperties.SmokingStatusCat.SmokesSomeDays:
-                    return All[2];
-                case PatientProperties.SmokingStatusCat.SmokerUnkCurrent:
-                    return All[3];
-                case PatientProperties.SmokingStatusCat.FormerSmoker:
-                    return All[4];
-                case PatientProperties.SmokingStatusCat.NeverSmoker:
-                    return All[5];
-                case PatientProperties.SmokingStatusCat.HeavySmoker:
-                    return All[6];
-                case PatientProperties.SmokingStatusCat.LightSmoker:
-                    return All[7];
-                default:
-                    return All[0];
-            }
+                PatientProperties.SmokingStatusCat.Unspecified => All[0],
+                PatientProperties.SmokingStatusCat.SmokesDaily => All[1],
+                PatientProperties.SmokingStatusCat.SmokesSomeDays => All[2],
+                PatientProperties.SmokingStatusCat.SmokerUnkCurrent => All[3],
+                PatientProperties.SmokingStatusCat.FormerSmoker => All[4],
+                PatientProperties.SmokingStatusCat.NeverSmoker => All[5],
+                PatientProperties.SmokingStatusCat.HeavySmoker => All[6],
+                PatientProperties.SmokingStatusCat.LightSmoker => All[7],
+                _ => All[0],
+            };
         }
     }
 
@@ -356,30 +337,44 @@ namespace MM4Common
         /// </summary>
         /// <param name="selection"></param>
         /// <returns></returns>
-
         public static CodifiedEntity FromFamilyRelationship(
             MM4Common.FamilyRelationship selection)
         {
-            switch (selection)
+            return selection switch
             {
-                case FamilyRelationship.Unknown:
-                    return All[0];
-                case FamilyRelationship.Father:
-                    return All[1];
-                case FamilyRelationship.Mother:
-                    return All[2];
-                case FamilyRelationship.Brother:
-                    return All[3];
-                case FamilyRelationship.Sister:
-                    return All[4];
-                case FamilyRelationship.Son:
-                    return All[5];
-                case FamilyRelationship.Daughter:
-                    return All[6];
-                default:
-                    return All[0];
-            }
+                FamilyRelationship.Unknown => All[0],
+                FamilyRelationship.Father => All[1],
+                FamilyRelationship.Mother => All[2],
+                FamilyRelationship.Brother => All[3],
+                FamilyRelationship.Sister => All[4],
+                FamilyRelationship.Son => All[5],
+                FamilyRelationship.Daughter => All[6],
+                _ => All[0]
+            };
         }
+        //////////public static CodifiedEntity FromFamilyRelationship(
+        //////////    MM4Common.FamilyRelationship selection)
+        //////////{
+        //////////    switch (selection)
+        //////////    {
+        //////////        case FamilyRelationship.Unknown:
+        //////////            return All[0];
+        //////////        case FamilyRelationship.Father:
+        //////////            return All[1];
+        //////////        case FamilyRelationship.Mother:
+        //////////            return All[2];
+        //////////        case FamilyRelationship.Brother:
+        //////////            return All[3];
+        //////////        case FamilyRelationship.Sister:
+        //////////            return All[4];
+        //////////        case FamilyRelationship.Son:
+        //////////            return All[5];
+        //////////        case FamilyRelationship.Daughter:
+        //////////            return All[6];
+        //////////        default:
+        //////////            return All[0];
+        //////////    }
+        //////////}
 
         /// <summary>
         /// get enum of FamilyRelationship matching snomed
@@ -419,8 +414,25 @@ namespace MM4Common
     /// WARNING: Unspecified isn't necessarily 
     /// in the value set of approved codes!
     /// </summary>
+    /// <remarks>
+    /// NOTICE:  Use static methods instead of 
+    /// creating new objects for predefined objects
+    /// The constructor requires initial
+    /// values, which can be null
+    /// </remarks>
+    /// <param name="selection"></param>
+    /// <param name="code"></param>
+    /// <param name="codeSystem"></param>
+    /// <param name="codeSystemName"></param>
+    /// <param name="displayName"></param>
+    /// <param name="nullFlavor"></param>
     [Serializable]
-    public class CodifiedGenderIdentity
+    public class CodifiedGenderIdentity(CodifiedGenderIdentity.Selections selection,
+        string? code,
+        string? codeSystem,
+        string? codeSystemName,
+        string displayName,
+        string? nullFlavor)
     {
         /// <summary>
         /// selections
@@ -466,27 +478,27 @@ namespace MM4Common
         /// index to be stored in database to refer to this concept,
         /// as int
         /// </summary>
-        public Selections Selection;
+        public Selections Selection = selection;
         /// <summary>
         /// the code for this concept
         /// </summary>
-        public string? Code;
+        public string? Code = code;
         /// <summary>
         /// the identifier for the code system code is from
         /// </summary>
-        public string? CodeSystem;
+        public string? CodeSystem = codeSystem;
         /// <summary>
         /// the human readable name of the code system code is from
         /// </summary>
-        public string? CodeSystemName;
+        public string? CodeSystemName = codeSystemName;
         /// <summary>
         /// human readable name of the concept
         /// </summary>
-        public string DisplayName;
+        public string DisplayName = displayName;
         /// <summary>
         /// the flavor of null, required if Code is null
         /// </summary>
-        public string? NullFlavor;
+        public string? NullFlavor = nullFlavor;
 
         /// <summary>
         /// the list of all choices
@@ -523,34 +535,35 @@ namespace MM4Common
             //male
             All.Add(new CodifiedGenderIdentity(Selections.Male,
                 "446151000124109",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,  //! forgive null
+                //CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Identifies as male",
                 null));
             //female
             All.Add(new CodifiedGenderIdentity(Selections.Female,
                 "446141000124107",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Identifies as female",
                 null));
             //female to male
             All.Add(new CodifiedGenderIdentity(Selections.FemaleToMale,
                 "407377005",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Female to male, transgender man",
                 null));
             All.Add(new CodifiedGenderIdentity(Selections.MaleToFemale,
                 "407376001",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Male to female, transgender woman",
                 null));
             All.Add(new CodifiedGenderIdentity(Selections.QueerBoth,
                 "446131000124102",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Genderqueer, neither exclusively male nor female",
                 null));
         }
@@ -677,33 +690,6 @@ namespace MM4Common
         }
 
         /// <summary>
-        /// NOTICE:  Use static methods instead of 
-        /// creating new objects for predefined objects
-        /// The constructor requires initial
-        /// values, which can be null
-        /// </summary>
-        /// <param name="selection"></param>
-        /// <param name="code"></param>
-        /// <param name="codeSystem"></param>
-        /// <param name="codeSystemName"></param>
-        /// <param name="displayName"></param>
-        /// <param name="nullFlavor"></param>
-        public CodifiedGenderIdentity(Selections selection,
-            string? code,
-            string? codeSystem,
-            string? codeSystemName,
-            string displayName,
-            string? nullFlavor)
-        {
-            Selection = selection;
-            Code = code;
-            CodeSystem = codeSystem;
-            CodeSystemName = codeSystemName;
-            DisplayName = displayName;
-            NullFlavor = nullFlavor;
-        }
-
-        /// <summary>
         /// get the result with given selection,
         /// or null if no match
         /// </summary>
@@ -788,8 +774,25 @@ namespace MM4Common
     /// person's sexual orientation, enum (integer)
     /// defined for use in HL7v3 reporting
     /// </summary>
+    /// <remarks>
+    /// NOTICE:  Use static methods instead of 
+    /// creating new objects for predefined objects
+    /// The constructor requires initial
+    /// values, which can be null
+    /// </remarks>
+    /// <param name="selection"></param>
+    /// <param name="code"></param>
+    /// <param name="codeSystem"></param>
+    /// <param name="codeSystemName"></param>
+    /// <param name="displayName"></param>
+    /// <param name="nullFlavor"></param>
     [Serializable]
-    public class CodifiedSexualOrientation
+    public class CodifiedSexualOrientation(CodifiedSexualOrientation.Selections selection,
+        string? code,
+        string? codeSystem,
+        string? codeSystemName,
+        string displayName,
+        string? nullFlavor)
     {
         /// <summary>
         /// selections
@@ -825,27 +828,27 @@ namespace MM4Common
         /// index to be stored in database to refer to this concept,
         /// as int
         /// </summary>
-        public Selections Selection;
+        public Selections Selection = selection;
         /// <summary>
         /// the code for this concept
         /// </summary>
-        public string? Code;
+        public string? Code = code;
         /// <summary>
         /// the identifier for the code system code is from
         /// </summary>
-        public string? CodeSystem;
+        public string? CodeSystem = codeSystem;
         /// <summary>
         /// the human readable name of the code system code is from
         /// </summary>
-        public string? CodeSystemName;
+        public string? CodeSystemName = codeSystemName;
         /// <summary>
         /// human readable name of the concept
         /// </summary>
-        public string DisplayName;
+        public string DisplayName = displayName;
         /// <summary>
         /// the flavor of null, required if Code is null
         /// </summary>
-        public string? NullFlavor;
+        public string? NullFlavor = nullFlavor;
 
         /// <summary>
         /// the list of all choices
@@ -882,22 +885,22 @@ namespace MM4Common
             //homosexual
             All.Add(new CodifiedSexualOrientation(Selections.Homosexual,
                 "38628009",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Lesbian, gay or homosexual",
                 null));
             //straight
             All.Add(new CodifiedSexualOrientation(Selections.Straight,
                 "20430005",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Straight or heterosexual",
                 null));
             //bisexual
             All.Add(new CodifiedSexualOrientation(Selections.Bisexual,
                 "42035005",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystemName,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
                 "Bisexual",
                 null));
         }
@@ -992,32 +995,6 @@ namespace MM4Common
                         "The Codified Sexual Orientation object is corrupted.");
             }
         }
-        /// <summary>
-        /// NOTICE:  Use static methods instead of 
-        /// creating new objects for predefined objects
-        /// The constructor requires initial
-        /// values, which can be null
-        /// </summary>
-        /// <param name="selection"></param>
-        /// <param name="code"></param>
-        /// <param name="codeSystem"></param>
-        /// <param name="codeSystemName"></param>
-        /// <param name="displayName"></param>
-        /// <param name="nullFlavor"></param>
-        public CodifiedSexualOrientation(Selections selection,
-            string? code,
-            string? codeSystem,
-            string? codeSystemName,
-            string displayName,
-            string? nullFlavor)
-        {
-            Selection = selection;
-            Code = code;
-            CodeSystem = codeSystem;
-            CodeSystemName = codeSystemName;
-            DisplayName = displayName;
-            NullFlavor = nullFlavor;
-        }
 
         /// <summary>
         /// get the result with given selection,
@@ -1103,8 +1080,19 @@ namespace MM4Common
     /// code system used in HL7 reporting
     /// defined for use in HL7v3 reporting
     /// </summary>
+    /// <remarks>
+    /// NOTICE:  Use static Get() method instead of 
+    /// creating new objects for predefined objects
+    /// The constructor requires initial
+    /// values, which can be null
+    /// </remarks>
+    /// <param name="selection"></param>
+    /// <param name="codeSystem"></param>
+    /// <param name="codeSystemName"></param>
     [Serializable]
-    public class CommCodeSys
+    public class CommCodeSys(CommCodeSys.Selections selection,
+        string? codeSystem,
+        string? codeSystemName)
     {
         /// <summary>
         /// selections enum (integer)
@@ -1153,20 +1141,20 @@ namespace MM4Common
         /// index to be stored in database to refer to this concept,
         /// as int
         /// </summary>
-        public Selections Selection;
+        public Selections? Selection = selection;
         /// <summary>
         /// the identifier for the code system 
         /// </summary>
-        public string? CodeSystem;
+        public string? CodeSystem = codeSystem;
         /// <summary>
         /// the human readable name of the code system 
         /// </summary>
-        public string? CodeSystemName;
+        public string? CodeSystemName = codeSystemName;
 
         /// <summary>
         /// the list of all choices
         /// </summary>
-        public static CommCodeSys[] All;
+        public static readonly CommCodeSys[] All;
 
         /// <summary>
         /// static constructor builds the static library of selections
@@ -1212,23 +1200,6 @@ namespace MM4Common
                 "CDC Race and Ethnicity"));
             //notice: if you add more please redimension the array!
         }
-        /// <summary>
-        /// NOTICE:  Use static Get() method instead of 
-        /// creating new objects for predefined objects
-        /// The constructor requires initial
-        /// values, which can be null
-        /// </summary>
-        /// <param name="selection"></param>
-        /// <param name="codeSystem"></param>
-        /// <param name="codeSystemName"></param>
-        public CommCodeSys(Selections selection,
-            string? codeSystem,
-            string? codeSystemName)
-        {
-            Selection = selection;
-            CodeSystem = codeSystem;
-            CodeSystemName = codeSystemName;
-        }
 
         /// <summary>
         /// get the result with given selection,
@@ -1238,7 +1209,7 @@ namespace MM4Common
         /// <returns></returns>
         public static CommCodeSys? Get(Selections selection)
         {
-            CommCodeSys result = null;
+            CommCodeSys? result = null;
             //iterate through all subclasses defined here
             for (int i = 0; i < All.Length; i++)
             {
@@ -1307,7 +1278,7 @@ namespace MM4Common
         /// <returns></returns>
         public override string ToString()
         {
-            return CodeSystemName;
+            return CodeSystemName ?? "undefined CodeSystemName";
         }
     }
 
@@ -1501,7 +1472,7 @@ namespace MM4Common
         /// <summary>
         /// human readable name
         /// </summary>
-        protected string _name = null;
+        protected string? _name = null;
         /// <summary>
         /// human readable name
         /// </summary>
@@ -1514,7 +1485,7 @@ namespace MM4Common
                     if (_raceGroup != null)
                         _name = _raceGroup.DisplayName;
                 }
-                return _name;
+                return _name ?? "Undefined";
             }
             set
             {
@@ -1525,14 +1496,14 @@ namespace MM4Common
         /// one of 5 defined categories for US, 
         /// or unknown or declined which don't have codes
         /// </summary>
-        protected CodifiedRaceGroup _raceGroup = null;
+        protected CodifiedRaceGroup? _raceGroup = null;
         /// <summary>
         /// one of the 5 defined categories for US , 
         /// or unknown or declined, which don't have codes
         /// (returns null if neither RaceGroup nor HierchicalCode
         /// have been set yet)
         /// </summary>
-        public CodifiedRaceGroup RaceGroup
+        public CodifiedRaceGroup? RaceGroup
         {
             get
             {
@@ -1577,7 +1548,8 @@ namespace MM4Common
                     else
                     {
                         //shouldn't ever get here
-                        _raceGroup = CodifiedRaceGroup.FromRaceEnum(RaceEnumDepreciated.Other);
+                        //_raceGroup = CodifiedRaceGroup.FromRaceEnum(RaceEnumDepreciated.Other);
+                        _raceGroup = null;
                     }
                 }
                 return _raceGroup;
@@ -1779,7 +1751,7 @@ namespace MM4Common
             {
                 //then this is a specific race within a grop
                 sb.Append("<");
-                sb.Append(RaceGroup.DisplayName);
+                sb.Append(RaceGroup!.DisplayName);
                 sb.Append(" (");
                 sb.Append(RaceGroup.Code);
                 sb.Append(")>");
@@ -1792,7 +1764,7 @@ namespace MM4Common
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is CodifiedRace)
                 return this.Name.CompareTo(((CodifiedRace)obj).Name);
@@ -1825,11 +1797,11 @@ namespace MM4Common
         /// <summary>
         /// human readable name
         /// </summary>
-        protected string _name = null;
+        protected string? _name = null;
         /// <summary>
         /// human readable name
         /// </summary>
-        public string Name
+        public string? Name
         {
             get
             {
@@ -1849,14 +1821,14 @@ namespace MM4Common
         /// one of 2 defined categories for US, 
         /// or unknown or declined which don't have codes
         /// </summary>
-        protected CodifiedEthnicityGroup _ethnicityGroup = null;
+        protected CodifiedEthnicityGroup? _ethnicityGroup = null;
         /// <summary>
         /// one of the 5 defined categories for US , 
         /// or unknown or declined, which don't have codes
         /// (returns null if neither EthnicityGroup nor HierchicalCode
         /// have been set yet)
         /// </summary>
-        public CodifiedEthnicityGroup EthnicityGroup
+        public CodifiedEthnicityGroup? EthnicityGroup
         {
             get
             {
@@ -2061,7 +2033,7 @@ namespace MM4Common
         /// <returns></returns>
         public override string ToString()
         {
-            return Name;
+            return Name ?? "Undefined";
         }
 
         /// <summary>
@@ -2069,10 +2041,10 @@ namespace MM4Common
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is CodifiedEthnicity)
-                return this.Name.CompareTo(((CodifiedEthnicity)obj).Name);
+                return this.Name!.CompareTo(((CodifiedEthnicity)obj).Name);
             else
                 return 0;
         }
@@ -2086,29 +2058,41 @@ namespace MM4Common
     /// Code System(s):Race and Ethnicity - CDC 2.16.840.1.113883.6.238
     /// IF specified group (not valid if unspecified or other)
     /// </summary>
+    /// <remarks>
+    /// constructor for RaceGroupCode
+    /// </remarks>
+    /// <param name="code"></param>
+    /// <param name="displayName"></param>
+    /// <param name="codeSystem"></param>
+    /// <param name="codeSystemName"></param>
+    /// <param name="heirarchicalCode"></param>
     [Serializable]
-    public class CodifiedRaceGroup
+    public class CodifiedRaceGroup(string code,
+        string codeSystem,
+        string codeSystemName,
+        string displayName,
+        string heirarchicalCode)
     {
         /// <summary>
         /// the race code
         /// </summary>
-        public string Code = string.Empty;
+        public string Code = code;
         /// <summary>
         /// text value
         /// </summary>
-        public string DisplayName = string.Empty;
+        public string DisplayName = displayName;
         /// <summary>
         /// ID of system code is defined in 
         /// </summary>
-        public string CodeSystem = string.Empty;
+        public string CodeSystem = codeSystem;
         /// <summary>
         /// name of system code is defined in
         /// </summary>
-        public string CodeSystemName = string.Empty;
+        public string CodeSystemName = codeSystemName;
         /// <summary>
         /// the heirarchical code relating it to Races data table
         /// </summary>
-        public string HeirarchicalCode = string.Empty;
+        public string HeirarchicalCode = heirarchicalCode;
         /// <summary>
         /// native american
         /// </summary>
@@ -2203,26 +2187,6 @@ namespace MM4Common
         }
 
         /// <summary>
-        /// constructor for RaceGroupCode
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="displayName"></param>
-        /// <param name="codeSystem"></param>
-        /// <param name="codeSystemName"></param>
-        /// <param name="heirarchicalCode"></param>
-        public CodifiedRaceGroup(string code,
-            string codeSystem,
-            string codeSystemName,
-            string displayName,
-            string heirarchicalCode)
-        {
-            Code = code;
-            DisplayName = displayName;
-            CodeSystem = codeSystem;
-            CodeSystemName = codeSystemName;
-            HeirarchicalCode = heirarchicalCode;
-        }
-        /// <summary>
         /// code details for enumerated race, or the
         /// illegal value of 
         /// (unspecified) if unspecified
@@ -2271,29 +2235,41 @@ namespace MM4Common
     /// Code System(s):Race and Ethnicity - CDC 2.16.840.1.113883.6.238
     /// IF specified ethnicity (not valid if unspecified or other)
     /// </summary>
+    /// <remarks>
+    /// constructor for CodifiedEthnicityGroup
+    /// </remarks>
+    /// <param name="code"></param>
+    /// <param name="displayName"></param>
+    /// <param name="codeSystem"></param>
+    /// <param name="codeSystemName"></param>
+    /// <param name="heirarchicalCode"></param>
     [Serializable]
-    public class CodifiedEthnicityGroup
+    public class CodifiedEthnicityGroup(string code,
+        string codeSystem,
+        string codeSystemName,
+        string displayName,
+        string heirarchicalCode)
     {
         /// <summary>
         /// the  code
         /// </summary>
-        public string Code = string.Empty;
+        public string Code = code;
         /// <summary>
         /// text value
         /// </summary>
-        public string DisplayName = string.Empty;
+        public string DisplayName = displayName;
         /// <summary>
         /// ID of system code is defined in 
         /// </summary>
-        public string CodeSystem = string.Empty;
+        public string CodeSystem = codeSystem;
         /// <summary>
         /// name of system code is defined in
         /// </summary>
-        public string CodeSystemName = string.Empty;
+        public string CodeSystemName = codeSystemName;
         /// <summary>
         /// the heirarchical code relating it to Ethnicity data table
         /// </summary>
-        public string HeirarchicalCode = string.Empty;
+        public string HeirarchicalCode = heirarchicalCode;
         /// <summary>
         /// native american
         /// </summary>
@@ -2348,27 +2324,6 @@ namespace MM4Common
         }
 
         /// <summary>
-        /// constructor for CodifiedEthnicityGroup
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="displayName"></param>
-        /// <param name="codeSystem"></param>
-        /// <param name="codeSystemName"></param>
-        /// <param name="heirarchicalCode"></param>
-        public CodifiedEthnicityGroup(string code,
-            string codeSystem,
-            string codeSystemName,
-            string displayName,
-            string heirarchicalCode)
-        {
-            Code = code;
-            DisplayName = displayName;
-            CodeSystem = codeSystem;
-            CodeSystemName = codeSystemName;
-            HeirarchicalCode = heirarchicalCode;
-        }
-
-        /// <summary>
         /// declined to specify
         /// </summary>
         public static CodifiedEthnicityGroup Declined
@@ -2391,3 +2346,6 @@ namespace MM4Common
 
 
 }
+
+
+

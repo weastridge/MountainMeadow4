@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCBase", "PCBase\PCBase.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4DataSql", "MM4DataSql\MM4DataSql.csproj", "{681C5B24-518B-43E8-A00B-B19712C3F7EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wve", "Wve\Wve.csproj", "{9484BD3D-6759-4FD9-AE62-0F128197AACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wve", "Wve\Wve.csproj", "{9484BD3D-6759-4FD9-AE62-0F128197AACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
