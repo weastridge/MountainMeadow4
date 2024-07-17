@@ -27,11 +27,15 @@ namespace PCBase
         /// </summary>
         public UserControl? Display { get; set; }
 
+        /// <summary>
+        /// the database methods
+        /// </summary>
         public IMM4Data? MM4Data { get; set; }
+
 
         public BaseProgramComponent(IMM4Data mm4Data) 
         {
-            Display = new BasePCDisplay();
+            Display = new BasePCDisplay(this);
             MM4Data = mm4Data;
         }
     }

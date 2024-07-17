@@ -14,3 +14,6 @@ Trying to connect to download users, but that means defining people, which need 
 7/11/24 2 hrs on MM4Types.cs;  down to 61 messages.
 7/12/24 got the warnings and messages fixed in MM4Types, but there are more in CommHelpers, including the complaint that static members shouldn't be visible (public).  I may need to move those into a separate project called HL7 or something so they will be internal.
 7/16/24 working on HL7Tools, down to 44 messages- mostly nulls, public static fields and switch expressions instead of switch statements.
+7/17/24 connecting to database.  Recall I have to right click MM4DataSql and click ManageUserSecrets to put the secret in.
+Also, I may have to edit every stored procedure, because they currently reference db MM3!  I can change [MM3].[dbo].[Users]  with just [dbo].Users, but I wish I had known that in MM3
+

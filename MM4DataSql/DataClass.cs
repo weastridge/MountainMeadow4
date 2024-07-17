@@ -41,10 +41,9 @@ namespace MM4DataSql
             UserBrief[] tempArray; //holds temporary array when redimensioning
             UserBrief result; //to be assigned each record
             int count = 0; //keep count of records returned
-            using (SqlConnection cn = new SqlConnection(_cnProvider.MM4ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand("usp_Select_Users", cn))
-                {
+            using SqlConnection cn = new (_cnProvider.GetMM4ConnectionString(false));
+
+                using SqlCommand cmd = new ("usp_Select_Users", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     //specify paramaters
                     cmd.Parameters.AddWithValue("@OnlyIfActive", onlyIfActive);
@@ -54,8 +53,7 @@ namespace MM4DataSql
 
                     //read data
                     cn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
+                    using SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
                             //increment counter
@@ -69,12 +67,9 @@ namespace MM4DataSql
 
                             //read new result
                             result = new UserBrief();
-                            readUserBrief(reader, result);
+                            ReadUserBrief(reader, result);
                             results[count - 1] = result;
                         }
-                    } //from using reader
-                } //from using cmd
-            } //from using cn
             //redimension array
             tempArray = results;
             results = new UserBrief[count]; Array.Copy(tempArray, 0, results, 0, count);
@@ -88,7 +83,7 @@ namespace MM4DataSql
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="result"></param>
-        private void readUserBrief(SqlDataReader reader, UserBrief result)
+        private static void ReadUserBrief(SqlDataReader reader, UserBrief result)
         {
             //read new result
             if (reader["UserID"] != DBNull.Value)

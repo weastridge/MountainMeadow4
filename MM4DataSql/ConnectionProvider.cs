@@ -19,6 +19,19 @@ namespace MM4DataSql
         // also requires Nuget Microsoft.Extension.Configuration.UserSecrets for temporary storage of database password until formal component is built.
 
         /// <summary>
+        /// storage for connection string
+        /// </summary>
+        protected string? _mm4ConnectionString;
+        internal string? GetMM4ConnectionString(bool forceReload)
+        {
+            if ((_mm4ConnectionString == null) ||
+                forceReload)
+                return BuildConnectionString();
+            else
+                return _mm4ConnectionString;
+        }
+
+        /// <summary>
         /// secret value, only used for testing, not needed by program...
         /// </summary>
         public static string MySecretValue
@@ -26,7 +39,6 @@ namespace MM4DataSql
             get
             {
                 string result = "";
-                //C:\Users\weast\AppData\Roaming\Microsoft\UserSecrets\6e122de1-3d8c-4422-9c69-50ce6ae6742b\secrets.json
                 var config = new Microsoft.Extensions.Configuration.ConfigurationBuilder().AddUserSecrets<ConnectionProvider>().Build();
                 string? secretResult = null;
                 if (config != null)
@@ -44,30 +56,26 @@ namespace MM4DataSql
         /// <summary>
         /// connection string builder
         /// </summary>
-#pragma warning disable CA1822 // Mark members as static
-        public string? MM4ConnectionString
-#pragma warning restore CA1822 // Mark members as static
+        protected static string? BuildConnectionString()
+
         {
-            get
+            string? result;
+            SqlConnectionStringBuilder builder = [];
+            var config = new ConfigurationBuilder().AddUserSecrets<ConnectionProvider>().Build();
+            //access 
+            builder.DataSource = "localhost,2008";
+            builder.InitialCatalog = "MM4";
+            builder.UserID = "MM4Login";
+            builder.Password = "UnknownPassword";
+            builder.Encrypt = true;
+            //this is not safe!  Need to install a certificate to the server instead of making it trust any certificate...
+            builder.TrustServerCertificate = true;
+            if (config["MM4DataSqlPwd"] != null)
             {
-                string? result;
-                SqlConnectionStringBuilder builder = [];
-                var config = new ConfigurationBuilder().AddUserSecrets<ConnectionProvider>().Build();
-                //access 
-                builder.DataSource = "localhost,2008";
-                builder.InitialCatalog = "MM4";
-                builder.UserID = "MM4Login";
-                builder.Password = "UnknownPassword";
-                builder.Encrypt = true;
-                //this is not safe!  Need to install a certificate to the server instead of making it trust any certificate...
-                builder.TrustServerCertificate = true;
-                if (config["MM3LoginPwd"] != null)
-                {
-                    builder.Password = config["MM3LoginPwd"];
-                }
-                result = builder.ToString();
-                return result;
+                builder.Password = config["MM4DataSqlPwd"];
             }
+            result = builder.ToString();
+            return result;
         }
     }
 
