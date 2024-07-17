@@ -10,7 +10,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MM4Common\MM4Common.csproj" />
+    <ProjectReference Include="..\MM4DataSql\MM4DataSql.csproj" />
     <ProjectReference Include="..\PCBase\PCBase.csproj" />
+    <ProjectReference Include="..\Wve\Wve.csproj" />
   </ItemGroup>
 
 </Project>

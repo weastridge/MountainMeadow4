@@ -10,7 +10,7 @@ using System.Data;
 
 namespace MM4DataSql
 {
-    internal class DataClass
+    public class DataClass:IMM4Data
     {
         protected ConnectionProvider _cnProvider;
         /// <summary>
@@ -98,9 +98,9 @@ namespace MM4DataSql
             if (reader["Login"] != DBNull.Value)
                 result.Login = ((System.String)reader["Login"]).Trim();
             if (reader["Permissions"] != DBNull.Value)
-                result.Permissions = (MM3Common.UserPermissions)reader["Permissions"];
+                result.Permissions = (MM4Common.UserPermissions)reader["Permissions"];
             if (reader["PrivacyExclusions"] != DBNull.Value)
-                result.PrivacyExclusions = (MM3Common.PrivacyFlags)reader["PrivacyExclusions"];
+                result.PrivacyExclusions = (MM4Common.PrivacyFlags)reader["PrivacyExclusions"];
             if (reader["DateLastUpdatedPwd"] != DBNull.Value)
                 result.DateLastUpdatedPwd = (System.DateTime)reader["DateLastUpdatedPwd"];
             if (reader["Comment"] != DBNull.Value)
@@ -116,18 +116,11 @@ namespace MM4DataSql
             if (reader["DateOfBirth"] != DBNull.Value)
                 result.DateOfBirth = (System.DateTime)reader["DateOfBirth"];
             if (reader["Gender"] != DBNull.Value)
-                result.Gender = (MM3Common.GenderType)reader["Gender"];
+                result.Gender = (MM4Common.GenderType)reader["Gender"];
             if (reader["IsActive"] != DBNull.Value)
                 result.IsActive = (bool)reader["IsActive"];
             if (reader["RcopiaID"] != DBNull.Value)
-                if (MM3Common.Medications.Medication.Use64bitRcopiaID)
-                {
-                    result.RcopiaID = (long)reader["RcopiaID"];
-                }
-                else
-                {
-                    result.RcopiaID = (long)((int)reader["RcopiaID"]);
-                }
+                result.RcopiaID = (long)reader["RcopiaID"];
             if (reader["IsGuest"] != DBNull.Value)
                 result.IsGuest = ((System.Boolean)reader["IsGuest"]);
         }

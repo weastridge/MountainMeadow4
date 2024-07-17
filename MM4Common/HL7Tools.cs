@@ -396,7 +396,7 @@ namespace MM4Common
                 "160439006" => FamilyRelationship.Sister,
                 "160449009" => FamilyRelationship.Son,
                 "160454000" => FamilyRelationship.Daughter,
-                _ => FamilyRelationship.Unknown,
+                _ => FamilyRelationship.Unknown
             };
         }
     }

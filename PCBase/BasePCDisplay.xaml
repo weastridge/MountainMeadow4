@@ -17,8 +17,9 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Content="Button1" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonLoadUsers" Content="Load Users" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Click="ButtonLoadUsers_Click"/>
         <Button Grid.Column="1" Content="Button2" HorizontalAlignment="Right" Margin="0,0,31,10" Grid.Row="2" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="TextBoxUsers" HorizontalAlignment="Stretch" Margin="30, 30, 30, 30" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" />
 
     </Grid>
 </UserControl>

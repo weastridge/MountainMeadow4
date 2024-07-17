@@ -10,6 +10,10 @@ namespace MM4Common
         /// hosts a panel to show in MM4 Display area if any. (nullable)
         /// </summary>
         public System.Windows.Controls.UserControl? Display { get; set; }
+        /// <summary>
+        /// the database methods
+        /// </summary>
+        public IMM4Data? MM4Data { get; set; }
     }
 
 }
