@@ -274,7 +274,7 @@ namespace MM4Common
         /// <summary>
         /// all fam hx selections, or at least the ones I've coded so far.
         /// </summary>
-        public static CodifiedEntity[] All = new CodifiedEntity[7];
+        public static readonly CodifiedEntity[] All = new CodifiedEntity[7];
         /// <summary>
         /// static constructor
         /// </summary>
@@ -386,25 +386,18 @@ namespace MM4Common
         public static FamilyRelationship GetFamilyRelationshipFromSNOMED(
             string snomed)
         {
-            switch (snomed)
+            return snomed switch
             {
-                case "407559004":
-                    return FamilyRelationship.Unknown;
-                case "160433007":
-                    return FamilyRelationship.Father;
-                case "160427003":
-                    return FamilyRelationship.Mother;
-                case "160444004":
-                    return FamilyRelationship.Brother;
-                case "160439006":
-                    return FamilyRelationship.Sister;
-                case "160449009":
-                    return FamilyRelationship.Son;
-                case "160454000":
-                    return FamilyRelationship.Daughter;
-                default:
-                    return FamilyRelationship.Unknown;
-            }
+
+                "407559004" => FamilyRelationship.Unknown,
+                "160433007" => FamilyRelationship.Father,
+                "160427003" => FamilyRelationship.Mother,
+                "160444004" => FamilyRelationship.Brother,
+                "160439006" => FamilyRelationship.Sister,
+                "160449009" => FamilyRelationship.Son,
+                "160454000" => FamilyRelationship.Daughter,
+                _ => FamilyRelationship.Unknown,
+            };
         }
     }
 
@@ -503,69 +496,71 @@ namespace MM4Common
         /// <summary>
         /// the list of all choices
         /// </summary>
-        public static List<CodifiedGenderIdentity> All;
+        public readonly static List<CodifiedGenderIdentity> All;
 
         /// <summary>
         /// static constructor builds the static library of selections
         /// </summary>
         static CodifiedGenderIdentity()
         {
-            All = new List<CodifiedGenderIdentity>();
-            //unknown
-            All.Add(new CodifiedGenderIdentity(Selections.Unspecified,
-                null,
-                null,
-                null,
-                "Unknown",
-                "UNK"));
-            //other
-            All.Add(new CodifiedGenderIdentity(Selections.Other,
-                null,
-                null,
-                null,
-                "Other",
-                "OTH"));
-            //declined
-            All.Add(new CodifiedGenderIdentity(Selections.Undisclosed,
-                null,
-                null,
-                null,
-                "Declined to specify",
-                "ASKU"));
-            //male
-            All.Add(new CodifiedGenderIdentity(Selections.Male,
-                "446151000124109",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,  //! forgive null
-                //CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Identifies as male",
-                null));
-            //female
-            All.Add(new CodifiedGenderIdentity(Selections.Female,
-                "446141000124107",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Identifies as female",
-                null));
-            //female to male
-            All.Add(new CodifiedGenderIdentity(Selections.FemaleToMale,
-                "407377005",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Female to male, transgender man",
-                null));
-            All.Add(new CodifiedGenderIdentity(Selections.MaleToFemale,
-                "407376001",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Male to female, transgender woman",
-                null));
-            All.Add(new CodifiedGenderIdentity(Selections.QueerBoth,
-                "446131000124102",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Genderqueer, neither exclusively male nor female",
-                null));
+            All =
+            [
+                //unknown
+                new CodifiedGenderIdentity(Selections.Unspecified,
+                    null,
+                    null,
+                    null,
+                    "Unknown",
+                    "UNK"),
+                //other
+                new CodifiedGenderIdentity(Selections.Other,
+                    null,
+                    null,
+                    null,
+                    "Other",
+                    "OTH"),
+                //declined
+                new CodifiedGenderIdentity(Selections.Undisclosed,
+                    null,
+                    null,
+                    null,
+                    "Declined to specify",
+                    "ASKU"),
+                //male
+                new CodifiedGenderIdentity(Selections.Male,
+                    "446151000124109",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,  //! forgive null
+                    //CommCodeSys.Get(CommCodeSys.Selections.SnomedCt).CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Identifies as male",
+                    null),
+                //female
+                new CodifiedGenderIdentity(Selections.Female,
+                    "446141000124107",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Identifies as female",
+                    null),
+                //female to male
+                new CodifiedGenderIdentity(Selections.FemaleToMale,
+                    "407377005",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Female to male, transgender man",
+                    null),
+                new CodifiedGenderIdentity(Selections.MaleToFemale,
+                    "407376001",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Male to female, transgender woman",
+                    null),
+                new CodifiedGenderIdentity(Selections.QueerBoth,
+                    "446131000124102",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Genderqueer, neither exclusively male nor female",
+                    null),
+            ];
         }
         /// <summary>
         /// unknown
@@ -853,56 +848,58 @@ namespace MM4Common
         /// <summary>
         /// the list of all choices
         /// </summary>
-        public static List<CodifiedSexualOrientation> All;
+        public static readonly List<CodifiedSexualOrientation> All;
 
         /// <summary>
         /// static constructor builds the static library of selections
         /// </summary>
         static CodifiedSexualOrientation()
         {
-            All = new List<CodifiedSexualOrientation>();
-            //unknown is preferred hl7 term
-            All.Add(new CodifiedSexualOrientation(Selections.Unspecified,
-                null,
-                null,
-                null,
-                "Unknown",
-                "UNK"));
-            //other
-            All.Add(new CodifiedSexualOrientation(Selections.Other,
-                null,
-                null,
-                null,
-                "Other",
-                "OTH"));
-            //declined
-            All.Add(new CodifiedSexualOrientation(Selections.DeclinedToSay,
-                null,
-                null,
-                null,
-                "Declined to specify",
-                "ASKU"));
-            //homosexual
-            All.Add(new CodifiedSexualOrientation(Selections.Homosexual,
-                "38628009",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Lesbian, gay or homosexual",
-                null));
-            //straight
-            All.Add(new CodifiedSexualOrientation(Selections.Straight,
-                "20430005",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Straight or heterosexual",
-                null));
-            //bisexual
-            All.Add(new CodifiedSexualOrientation(Selections.Bisexual,
-                "42035005",
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
-                CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
-                "Bisexual",
-                null));
+            All =
+            [
+                //unknown is preferred hl7 term
+                new CodifiedSexualOrientation(Selections.Unspecified,
+                    null,
+                    null,
+                    null,
+                    "Unknown",
+                    "UNK"),
+                //other
+                new CodifiedSexualOrientation(Selections.Other,
+                    null,
+                    null,
+                    null,
+                    "Other",
+                    "OTH"),
+                //declined
+                new CodifiedSexualOrientation(Selections.DeclinedToSay,
+                    null,
+                    null,
+                    null,
+                    "Declined to specify",
+                    "ASKU"),
+                //homosexual
+                new CodifiedSexualOrientation(Selections.Homosexual,
+                    "38628009",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Lesbian, gay or homosexual",
+                    null),
+                //straight
+                new CodifiedSexualOrientation(Selections.Straight,
+                    "20430005",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Straight or heterosexual",
+                    null),
+                //bisexual
+                new CodifiedSexualOrientation(Selections.Bisexual,
+                    "42035005",
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystem,
+                    CommCodeSys.Get(CommCodeSys.Selections.SnomedCt)!.CodeSystemName,
+                    "Bisexual",
+                    null),
+            ];
         }
 
         /// <summary>
@@ -1023,7 +1020,7 @@ namespace MM4Common
         /// <returns></returns>
         public string ToVBar()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new ();
             sb.Append((int)Selection).ToString();
             sb.Append('|');
             sb.Append(Code);
@@ -1048,8 +1045,8 @@ namespace MM4Common
             string[] parts = vbar.Split('|');
             if (parts.Length > 5)
             {
-                int selection;
-                if (!int.TryParse(parts[0], out selection))
+                //int selection;
+                if (!int.TryParse(parts[0], out int selection))
                 {
                     selection = int.MinValue; //null
                 }
@@ -1320,11 +1317,11 @@ namespace MM4Common
         /// <returns></returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new ();
             sb.Append(Name.Trim());
             sb.Append(" (");
             sb.Append(ISOCode.Trim());
-            sb.Append(")");
+            sb.Append(')');
             return sb.ToString();
         }
         /// <summary>
@@ -1336,7 +1333,7 @@ namespace MM4Common
         /// <returns></returns>
         public static CodifiedLanguage FromString(string nameAndCode)
         {
-            CodifiedLanguage result = new CodifiedLanguage();
+            CodifiedLanguage result = new ();
             string[] parts = nameAndCode.Split('(');
             if (parts.Length > 1)
             {
@@ -1378,13 +1375,14 @@ namespace MM4Common
             get
             {
                 List<CodifiedLanguage> result =
-                    new List<CodifiedLanguage>();
-                result.Add(CodifiedLanguage.Unspecified);
-                result.Add(new CodifiedLanguage("English", "EN"));
-                result.Add(new CodifiedLanguage("Spanish", "ES"));
-                result.Add(new CodifiedLanguage("French", "FR"));
-                result.Add(new CodifiedLanguage("Portuguese", "PT"));
-                result.Add(CodifiedLanguage.Declined);
+                    [
+                        CodifiedLanguage.Unspecified,
+                        new CodifiedLanguage("English", "EN"),
+                        new CodifiedLanguage("Spanish", "ES"),
+                        new CodifiedLanguage("French", "FR"),
+                        new CodifiedLanguage("Portuguese", "PT"),
+                        CodifiedLanguage.Declined,
+                    ];
                 return result;
             }
         }
@@ -1609,24 +1607,26 @@ namespace MM4Common
         /// <returns></returns>
         public static CodifiedRace FromRaceGroup(CodifiedRaceGroup group)
         {
-            CodifiedRace result = new CodifiedRace();
-            result.HierarchicalCode = group.HeirarchicalCode;
-            result.RaceGroup = group;
-            result.Name = group.DisplayName;
-            result.UniqueID = group.Code;
+            CodifiedRace result = new()
+            {
+                HierarchicalCode = group.HeirarchicalCode,
+                RaceGroup = group,
+                Name = group.DisplayName,
+                UniqueID = group.Code
+            };
             return result;
         }
 
         /// <summary>
         /// id of the code system for CDA communications
         /// </summary>
-        public static string CodeSystem = "2.16.840.1.113883.6.238";
+        public static readonly string  CodeSystem = "2.16.840.1.113883.6.238";
         // but could also use 2.16.840.1.113883.5.104 which is hl7's 'v3 Code System Race'
         //at http://hl7.org/fhir/ValueSet/v3-Race
         /// <summary>
         /// name of code system for CDA communications
         /// </summary>
-        public static string CodeSystemName = "Race & Ethnicity - CDC";
+        public static readonly string CodeSystemName = "Race & Ethnicity - CDC";
         /// <summary>
         /// serialize the Heirarchical Codes of list of races each
         /// preceded by a vertical bar to facilitate queries,
@@ -1636,12 +1636,12 @@ namespace MM4Common
         /// <returns></returns>
         public static string ToVBar(List<CodifiedRace> races)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             if ((races != null) && (races.Count > 0))
             {
                 for (int i = 0; i < races.Count; i++)
                 {
-                    sb.Append("|");
+                    sb.Append('|');
                     if (races[i].UniqueID == CodifiedRace.Declined.UniqueID)
                         sb.Append("(declined)");
                     else
@@ -1742,7 +1742,7 @@ namespace MM4Common
         /// <returns></returns>
         public string ToStringLong()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append(Name);
             sb.Append(" (");
             sb.Append(UniqueID);
@@ -1750,7 +1750,7 @@ namespace MM4Common
             if (HierarchicalCode.Length > 2)
             {
                 //then this is a specific race within a grop
-                sb.Append("<");
+                sb.Append('<');
                 sb.Append(RaceGroup!.DisplayName);
                 sb.Append(" (");
                 sb.Append(RaceGroup.Code);
@@ -1766,8 +1766,8 @@ namespace MM4Common
         /// <returns></returns>
         public int CompareTo(object? obj)
         {
-            if (obj is CodifiedRace)
-                return this.Name.CompareTo(((CodifiedRace)obj).Name);
+            if (obj is CodifiedRace race)
+                return this.Name.CompareTo(race.Name);
             else
                 return 0;
         }
@@ -1909,24 +1909,26 @@ namespace MM4Common
         /// <returns></returns>
         public static CodifiedEthnicity FromEthnicityGroup(CodifiedEthnicityGroup group)
         {
-            CodifiedEthnicity result = new CodifiedEthnicity();
-            result.HierarchicalCode = group.HeirarchicalCode;
-            result.EthnicityGroup = group;
-            result.Name = group.DisplayName;
-            result.UniqueID = group.Code;
+            CodifiedEthnicity result = new()
+            {
+                HierarchicalCode = group.HeirarchicalCode,
+                EthnicityGroup = group,
+                Name = group.DisplayName,
+                UniqueID = group.Code
+            };
             return result;
         }
 
         /// <summary>
         /// id of the code system for CDA communications
         /// </summary>
-        public static string CodeSystem = "2.16.840.1.113883.6.238";
+        public static readonly string CodeSystem = "2.16.840.1.113883.6.238";
         // but could also use 2.16.840.1.113883.5.50 which is hl7's 'v3 Code System Ethnicity'
         //at http://hl7.org/fhir/ValueSet/v3-Race
         /// <summary>
         /// name of code system for CDA communications
         /// </summary>
-        public static string CodeSystemName = "Race & Ethnicity - CDC";
+        public static readonly string CodeSystemName = "Race & Ethnicity - CDC";
         /// <summary>
         /// serialize the Heirarchical Codes of list of ethnicities each
         /// preceded by a vertical bar to facilitate queries,
@@ -1936,12 +1938,12 @@ namespace MM4Common
         /// <returns></returns>
         public static string ToVBar(List<CodifiedEthnicity> eths)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             if ((eths != null) && (eths.Count > 0))
             {
                 for (int i = 0; i < eths.Count; i++)
                 {
-                    sb.Append("|");
+                    sb.Append('|');
                     if (eths[i].UniqueID == CodifiedEthnicity.Declined.UniqueID)
                         sb.Append("(declined)");
                     else
@@ -2043,8 +2045,8 @@ namespace MM4Common
         /// <returns></returns>
         public int CompareTo(object? obj)
         {
-            if (obj is CodifiedEthnicity)
-                return this.Name!.CompareTo(((CodifiedEthnicity)obj).Name);
+            if (obj is CodifiedEthnicity ce)
+                return this.Name!.CompareTo(ce.Name);
             else
                 return 0;
         }
@@ -2096,39 +2098,39 @@ namespace MM4Common
         /// <summary>
         /// native american
         /// </summary>
-        public static CodifiedRaceGroup NativeAmericanIndian;
+        public static readonly CodifiedRaceGroup NativeAmericanIndian;
         /// <summary>
         /// asian
         /// </summary>
-        public static CodifiedRaceGroup Asian;
+        public static readonly CodifiedRaceGroup Asian;
         /// <summary>
         /// black
         /// </summary>
-        public static CodifiedRaceGroup Black;
+        public static readonly CodifiedRaceGroup Black;
         /// <summary>
         /// pacific islander
         /// </summary>
-        public static CodifiedRaceGroup PacificIslander;
+        public static readonly CodifiedRaceGroup PacificIslander;
         /// <summary>
         /// white
         /// </summary>
-        public static CodifiedRaceGroup White;
+        public static readonly CodifiedRaceGroup White;
         /// <summary>
         /// declined too specify is NOT a code
         /// </summary>
-        public static CodifiedRaceGroup Declined;
+        public static readonly CodifiedRaceGroup Declined;
         /// <summary>
         /// other race
         /// </summary>
-        public static CodifiedRaceGroup Other;
+        public static readonly CodifiedRaceGroup Other;
         /// <summary>
         /// unspecified is NOT a code
         /// </summary>
-        public static CodifiedRaceGroup Unspecified;
+        public static readonly CodifiedRaceGroup Unspecified;
         /// <summary>
         /// array of all the race groups
         /// </summary>
-        public static CodifiedRaceGroup[] Selections;
+        public static readonly CodifiedRaceGroup[] Selections;
 
         /// <summary>
         /// static constructor
@@ -2195,29 +2197,19 @@ namespace MM4Common
         /// <returns></returns>
         public static CodifiedRaceGroup FromRaceEnum(RaceEnumDepreciated race)
         {
-            switch (race)
+            return race switch
             {
-                case RaceEnumDepreciated.Asian:
-                    return Asian;
-                case RaceEnumDepreciated.Black:
-                    return Black;
-                case RaceEnumDepreciated.NativeAmericanIndian:
-                    return NativeAmericanIndian;
-                case RaceEnumDepreciated.Other:
-                    return Other;
-                case RaceEnumDepreciated.PacificIslander:
-                    return PacificIslander;
-                case RaceEnumDepreciated.Unspecified:
-                    return Unspecified;
-                case RaceEnumDepreciated.White:
-                    return White;
-                case RaceEnumDepreciated.DeclinedToSpecify:
-                    return Declined;
-                default:
-                    throw new Exception("Programmer needs to define details for this category, " +
-                        Enum.GetName(typeof(RaceEnumDepreciated), race));
-                    //;break;
-            }
+                RaceEnumDepreciated.Asian => Asian,
+                RaceEnumDepreciated.Black => Black,
+                RaceEnumDepreciated.NativeAmericanIndian => NativeAmericanIndian,
+                RaceEnumDepreciated.Other => Other,
+                RaceEnumDepreciated.PacificIslander => PacificIslander,
+                RaceEnumDepreciated.Unspecified => Unspecified,
+                RaceEnumDepreciated.White => White,
+                RaceEnumDepreciated.DeclinedToSpecify => Declined,
+                _ => throw new Exception("Programmer needs to define details for this category, " +
+                        Enum.GetName(typeof(RaceEnumDepreciated), race))
+            };
         }
         /// <summary>
         /// display name
@@ -2273,24 +2265,24 @@ namespace MM4Common
         /// <summary>
         /// native american
         /// </summary>
-        public static CodifiedEthnicityGroup Unspecified;
+        public static readonly CodifiedEthnicityGroup Unspecified;
         /// <summary>
         /// asian
         /// </summary>
-        public static CodifiedEthnicityGroup NotHispanic;
+        public static readonly CodifiedEthnicityGroup NotHispanic;
         /// <summary>
         /// black
         /// </summary>
-        public static CodifiedEthnicityGroup Hispanic;
+        public static readonly CodifiedEthnicityGroup Hispanic;
         /// <summary>
         /// pacific islander
         /// </summary>
-        public static CodifiedEthnicityGroup DeclinedToSay;
+        public static readonly CodifiedEthnicityGroup DeclinedToSay;
 
         /// <summary>
         /// array of all the race groups
         /// </summary>
-        public static CodifiedEthnicityGroup[] Selections;
+        public static readonly CodifiedEthnicityGroup[] Selections;
         /// <summary>
         /// static constructor
         /// </summary>
