@@ -65,7 +65,7 @@ namespace MountainMeadow4
 
         private void ButtonFirst_Click(object sender, RoutedEventArgs e)
         {
-            IProgramComponent pc = new PCBase.BaseProgramComponent(MainClass.MM4DataClass);
+            IProgramComponent pc = new PCBase.ExampleProgramComponent(MainClass.MM4DataClass);
             UserControl? uc = pc.Display;
             if (uc != null)
             {
