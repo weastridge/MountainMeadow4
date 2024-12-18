@@ -1,3 +1,5 @@
+Notes on MountainMeadow4
+
 5/13/24 reading up on wpf layout, sizing, etc.  Don't seem to find an easy way to change the font on the main window title bar, though it is supposedly possible per https://www.actiprosoftware.com/community/thread/21421/change-the-font-in-the-window-title-bar
 6/13/24 decided on starting size for main window, see TestingM4 for discussion
 Height="922" Width="1548"
@@ -19,4 +21,14 @@ Also, I may have to edit every stored procedure, because they currently referenc
 7/18/24 Need to de-identify MM4 database so I can keep it updated on OneDrive or DropBox, since I'm making lots of changes to the sprocs.
 and need to make a Component piecer to assign and coordinate components, and then make a BaseProgramComponent that other components can inherit from.
 then will make a PatientSearch component
+generated random lorem ipsem latin text from https://www.lipsum.com/ I think, saved in data\computer
+generated a few random names at "C:\Users\weast\.spyder-py3\custom_random_names.txt" using faker in python, but it's limited to a few names.
+generated almost 400 last names and boy and girl first names with https://www.name-generator.org.uk/?i=b189ef7  However, our database has 2371 unique given names and 2173 unique family names!  Need to remove *astericks from some of them.  RandomDataGenerator is in OneDrive\Wesley-Personal\Keepers\RandomData
+8/9/24 been working on RandomDataGenerator.sln
+added usersecrets:  right clicked MM4DataSQL and chose Manage User Secrets;  edited the secrets.json file.
+12/18/24 updated some depreciated packages like Azure.Identity (used for User Secrets) and Microsoft.Data.SqlClient, and converted from .Net 8 to .Net 9.
+todo: finish de-id patients- i.e. remove comments, medicare and rcopia numbers and ssn last fours.
+Started Copilot and got sharekey for others to share code at https://prod.liveshare.vsengsaas.visualstudio.com/join?74543BC6BB4B6C69C6BA5559366794851332
+
+
 
