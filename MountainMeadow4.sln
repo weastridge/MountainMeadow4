@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MM4DataSql", "MM4DataSql\MM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wve", "Wve\Wve.csproj", "{9484BD3D-6759-4FD9-AE62-0F128197AACE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCLookup", "PCLookup\PCLookup.csproj", "{3254C5F6-EF82-47E5-BF36-6B94C4FD9843}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9484BD3D-6759-4FD9-AE62-0F128197AACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9484BD3D-6759-4FD9-AE62-0F128197AACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9484BD3D-6759-4FD9-AE62-0F128197AACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3254C5F6-EF82-47E5-BF36-6B94C4FD9843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3254C5F6-EF82-47E5-BF36-6B94C4FD9843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3254C5F6-EF82-47E5-BF36-6B94C4FD9843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3254C5F6-EF82-47E5-BF36-6B94C4FD9843}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

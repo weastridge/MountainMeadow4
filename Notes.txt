@@ -30,5 +30,7 @@ added usersecrets:  right clicked MM4DataSQL and chose Manage User Secrets;  edi
 todo: finish de-id patients- i.e. remove comments, medicare and rcopia numbers and ssn last fours.
 Started Copilot and got sharekey for others to share code at https://prod.liveshare.vsengsaas.visualstudio.com/join?74543BC6BB4B6C69C6BA5559366794851332
 
+1/10/25 randomized names in Patients and PatientNames and deidentified Patients, using T-sql files in Tsql folder; note there is also a RandomDataGenerator VS project in OneDrive\Wesley-Personal\Keepers\RandomData
+1/15/25 starting to make a program component for the patient search - and to document program components
 
 
